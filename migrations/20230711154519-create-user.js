@@ -13,13 +13,24 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isEmail: true
+        },
+        unique: {
+          args: true,
+          msg: 'Email address already in use!'
+        }
+      },
+      phoneNumber: {
         type: Sequelize.STRING
       },
-      phoneNumber:{
-        type:Sequelize.STRING
-      },
-      password:{
-        type:Sequelize.STRING
+      password: {
+        type: Sequelize.STRING,
+        validate: {
+          len: [8],
+        },
       },
       createdAt: {
         allowNull: false,
