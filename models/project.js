@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Project.belongsTo(models.User,{foreignKey:"userId"})
+      Project.hasOne(models.Media,{ foreignKey: 'projectId' })
     }
   }
   Project.init({
@@ -27,12 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     projectTech:{
-      type:DataTypes.JSON,
-      validate:{
-        notEmpty:{msg:"Project tech is required"}
-      }
-    },
-    projectImages:{
       type:DataTypes.JSON,
       validate:{
         notEmpty:{msg:"Project tech is required"}

@@ -9,6 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId:{
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: { msg: "user id is required" }
+        }
+      },
       projectName: {
         type: Sequelize.STRING,
         validate: {
@@ -22,12 +28,6 @@ module.exports = {
         }
       },
       projectTech: {
-        type: Sequelize.JSON,
-        validate: {
-          notEmpty: { msg: "Project tech is required" }
-        }
-      },
-      projectImages: {
         type: Sequelize.JSON,
         validate: {
           notEmpty: { msg: "Project tech is required" }

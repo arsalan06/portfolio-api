@@ -4,7 +4,9 @@ var bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 const authRoute = require("./routes/authRoutes");
+const projectRoute = require("./routes/projectRoutes");
 app.use("/api/v1", authRoute);
+app.use("/api/v1", projectRoute);
 
 app.use((err, req, res, next)=>{
   err.statusCode=err.statusCode || 500
