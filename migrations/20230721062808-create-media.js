@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       projectId:{
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         validate: {
           notEmpty: { msg: "Project id is required" }
         }

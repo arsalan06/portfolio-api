@@ -27,6 +27,7 @@ exports.protect = async (req, res, next) => {
       // 3) check this user exists
       const userExist = await User.findOne({ where: { id: authData.id } });
       if (userExist) {
+        req.userId=authData.id;
         next();
       } else {
         return next(new appError("This user is not exist.", 401));

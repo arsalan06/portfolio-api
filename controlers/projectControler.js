@@ -55,3 +55,21 @@ exports.addMedia= async (req,res,next)=>{
       });
   }
 }
+
+exports.getProject=async(req,res,next)=>{
+  try{
+    const userProjects= await Project.findAll({where:{userId:req.userId}, include: "Media"})
+    res.status(201).json({
+      status: "success",
+      data: {
+        projects: userProjects,
+      },
+    });
+  }catch(err){
+    console.log(err);
+    res.status(401).json({
+      status: "Fail",
+      message: err,
+    });
+  }
+}
