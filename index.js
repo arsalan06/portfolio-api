@@ -5,8 +5,10 @@ const app = express();
 app.use(bodyParser.json());
 const authRoute = require("./routes/authRoutes");
 const projectRoute = require("./routes/projectRoutes");
+const experienceRoute =require("./routes/experienceRoutes")
 app.use("/api/v1", authRoute);
 app.use("/api/v1", projectRoute);
+app.use("/api/v1", experienceRoute);
 
 app.use((err, req, res, next)=>{
   err.statusCode=err.statusCode || 500
