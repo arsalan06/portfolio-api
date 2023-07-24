@@ -58,7 +58,10 @@ exports.addMedia= async (req,res,next)=>{
 
 exports.getProject=async(req,res,next)=>{
   try{
-    const userProjects= await Project.findAll({where:{userId:req.userId}, include: "Media"})
+    const userProjects= await Project.findAll({where:{userId:req.userId}, include: {
+      model: Media,
+      as: "Media"
+    }})
     res.status(201).json({
       status: "success",
       data: {

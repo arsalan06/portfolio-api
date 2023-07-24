@@ -12,9 +12,6 @@ module.exports = {
       uerId: {
         type: Sequelize.INTEGER,
         allowNull:false,
-        validate: {
-          notEmpty: { msg: "UserId is required" },
-        },
       },
       companyName: {
         type: Sequelize.STRING,
