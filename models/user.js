@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Project,{ foreignKey: 'userId' })
-      User.hasMany(models.Experience,{ foreignKey: 'userId' })
+      User.hasMany(models.Project, { foreignKey: "userId" });
+      User.hasMany(models.Experience, { foreignKey: "userId" });
     }
   }
   User.init(
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         unique: {
           args: true,
-          msg: 'Email address already in use!'
+          msg: "Email address already in use!",
         },
         validate: {
           notEmpty: { msg: "email is required" },
@@ -37,6 +37,33 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           notEmpty: { msg: "phoneNumber is required" },
+        },
+      },
+      secondPhoneNumber: {
+        type: DataTypes.STRING,
+      },
+      telegram: {
+        type: DataTypes.STRING,
+      },
+      skype: {
+        type: DataTypes.STRING,
+      },
+      country: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Country is required" },
+        },
+      },
+      state: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "State is required" },
+        },
+      },
+      city: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "City is required" },
         },
       },
       password: {
