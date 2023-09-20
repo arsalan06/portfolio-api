@@ -1,7 +1,8 @@
 const authControler = require("../controlers/authControler");
 const express = require("express");
+const { uploadImage } = require("../midlewares/uploadImage");
 const authRouter = express.Router();
 const {signup, login}=authControler
-authRouter.post("/signup",signup);
+authRouter.post("/signup",uploadImage,signup);
 authRouter.post("/login",login);
 module.exports = authRouter

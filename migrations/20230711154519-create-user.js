@@ -12,6 +12,9 @@ module.exports = {
       fullName: {
         type: Sequelize.STRING,
       },
+      profilePic: {
+        type: Sequelize.STRING,
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,

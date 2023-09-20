@@ -8,7 +8,21 @@ const signToken = (id) => {
 };
 exports.signup = async (req, res, next) => {
   try {
-    const { fullName, email, password, confirmPassword } = req.body;
+    const {
+      fullName,
+      email,
+      password,
+      confirmPassword,
+      phoneNumber,
+      secondPhoneNumber,
+      telegram,
+      skype,
+      country,
+      state,
+      city,
+    } = req.body;
+    const { file } = req;
+    const profilePic = file.filename;
     if (password !== confirmPassword) {
       return next(
         new appError("Password and confirm password is not same", 401)
@@ -18,12 +32,20 @@ exports.signup = async (req, res, next) => {
       fullName,
       email,
       password,
+      phoneNumber,
+      secondPhoneNumber,
+      telegram,
+      skype,
+      country,
+      state,
+      city,
+      profilePic,
     });
     const token = signToken(newUser.id);
-    newUser.password=undefined
+    newUser.password = undefined;
     res.status(201).json({
       status: "success",
-      token:token,
+      token: token,
       data: {
         user: newUser,
       },

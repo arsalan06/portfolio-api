@@ -22,11 +22,17 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "name is required" },
         },
       },
+      profilePic: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Profile pic is required" },
+        },
+      },
       email: {
         type: DataTypes.STRING,
         unique: {
           args: true,
-          msg: "Email address already in use!",
+          msg: "email address already in use!",
         },
         validate: {
           notEmpty: { msg: "email is required" },
@@ -90,6 +96,7 @@ module.exports = (sequelize, DataTypes) => {
   User.prototype.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
   };
+
   return User;
 };
 
