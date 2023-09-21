@@ -3,14 +3,8 @@ const appError = require("../utils/appError");
 
 exports.addProject= async (req,res,next)=>{
     try{
-      const {projectName, projectTech, projectDuration, projectDescription, userId}=req.body
-    const newProject=await Project.create({
-      projectName,
-      projectDescription,
-      projectDuration,
-      projectTech,
-      userId
-    });
+      // const {projectName, projectTech, projectDuration, projectDescription, userId}=req.body
+    const newProject=await Project.create(req.body);
     res.status(201).json({
       status: "success",
       data: {

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Project, { foreignKey: "userId" });
       User.hasMany(models.Experience, { foreignKey: "userId" });
+      User.hasMany(models.Skill, { foreignKey: "userId" });
     }
   }
   User.init(
@@ -76,6 +77,36 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           len: [8],
+        },
+      },
+      languages: {
+        type: DataTypes.JSON,
+        validate: {
+          notEmpty: { msg: "Language is required" },
+        },
+      },
+      totalExperience: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Experience is required" },
+        },
+      },
+      totalProject: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Project is required" },
+        },
+      },
+      numberAward: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Award is required" },
+        },
+      },
+      role: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Role is required" },
         },
       },
     },

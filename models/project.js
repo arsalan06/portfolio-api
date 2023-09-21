@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
     /**
@@ -11,38 +9,50 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Project.belongsTo(models.User,{foreignKey:"userId"})
-      Project.hasOne(models.Media,{ foreignKey: 'projectId', as: "Media"})
+      Project.belongsTo(models.User, { foreignKey: "userId" });
+      Project.hasOne(models.Media, { foreignKey: "projectId", as: "Media" });
     }
   }
-  Project.init({
-    projectName: {
-      type:DataTypes.STRING,
-      validate:{
-        notEmpty:{msg:"Project name is required"}
-      }
+  Project.init(
+    {
+      projectName: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Project name is required" },
+        },
+      },
+      startDate: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Project start date is required" },
+        },
+      },
+      endDate: {
+        type: DataTypes.STRING,
+      },
+      status: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Project Status is required" },
+        },
+      },
+      projectTech: {
+        type: DataTypes.JSON,
+        validate: {
+          notEmpty: { msg: "Project tech is required" },
+        },
+      },
+      projectDescription: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "Project description is required" },
+        },
+      },
     },
-    projectDuration:{
-      type:DataTypes.STRING,
-      validate:{
-        notEmpty:{msg:"Project duration is required"}
-      }
-    },
-    projectTech:{
-      type:DataTypes.JSON,
-      validate:{
-        notEmpty:{msg:"Project tech is required"}
-      }
-    },
-    projectDescription:{
-      type:DataTypes.STRING,
-      validate:{
-        notEmpty:{msg:"Project description is required"}
-      }
-    },
-  }, {
-    sequelize,
-    modelName: 'Project',
-  });
+    {
+      sequelize,
+      modelName: "Project",
+    }
+  );
   return Project;
 };

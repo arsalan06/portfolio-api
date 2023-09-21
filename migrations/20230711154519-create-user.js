@@ -53,6 +53,24 @@ module.exports = {
           len: [8],
         },
       },
+      languages: {
+        type: Sequelize.JSON,
+        validate: {
+          notEmpty: { msg: "Language is required" },
+        },
+      },
+      totalExperience: {
+        type: Sequelize.STRING,
+      },
+      totalProject: {
+        type: Sequelize.STRING,
+      },
+      numberAward: {
+        type: Sequelize.STRING,
+      },
+      role: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

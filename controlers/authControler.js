@@ -20,6 +20,11 @@ exports.signup = async (req, res, next) => {
       country,
       state,
       city,
+      languages,
+      totalExperience,
+      totalProject,
+      numberAward,
+      role,
     } = req.body;
     const { file } = req;
     const profilePic = file.filename;
@@ -40,6 +45,11 @@ exports.signup = async (req, res, next) => {
       state,
       city,
       profilePic,
+      languages,
+      totalExperience,
+      totalProject,
+      numberAward,
+      role,
     });
     const token = signToken(newUser.id);
     newUser.password = undefined;
