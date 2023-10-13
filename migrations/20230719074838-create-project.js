@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      userName: {
         type: Sequelize.INTEGER,
         validate: {
           notEmpty: { msg: "user id is required" },

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Experience.belongsTo(models.User,{foreignKey:"userId"})
+      Experience.belongsTo(models.User,{foreignKey:"userName"})
     }
   }
   Experience.init(

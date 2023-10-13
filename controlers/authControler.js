@@ -10,6 +10,7 @@ exports.signup = async (req, res, next) => {
   try {
     const {
       fullName,
+      userName,
       email,
       password,
       confirmPassword,
@@ -35,6 +36,7 @@ exports.signup = async (req, res, next) => {
     }
     const newUser = await User.create({
       fullName,
+      userName,
       email,
       password,
       phoneNumber,
@@ -70,12 +72,12 @@ exports.signup = async (req, res, next) => {
 };
 exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      return next(new appError("please provide email or password", 401));
-    } else if (email && password) {
+    const { userName, password } = req.body;
+    if (!userName || !password) {
+      return next(new appError("please provide userName or password", 401));
+    } else if (userName && password) {
       const user = await User.findOne({
-        where: { email: email },
+        where: { userName: userName },
       });
       if (!user) {
         return next(new appError("This user does not exist", 401));

@@ -1,8 +1,10 @@
 const express= require("express")
 require("dotenv").config();
 var bodyParser = require("body-parser");
+var cors = require('cors')
 const app = express();
 app.use(bodyParser.json());
+app.use(cors())
 const authRoute = require("./routes/authRoutes");
 const projectRoute = require("./routes/projectRoutes");
 const experienceRoute =require("./routes/experienceRoutes");

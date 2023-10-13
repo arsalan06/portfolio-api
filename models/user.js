@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Project, { foreignKey: "userId" });
-      User.hasMany(models.Experience, { foreignKey: "userId" });
-      User.hasMany(models.Skill, { foreignKey: "userId" });
+      User.hasMany(models.Project, { foreignKey: "userName" });
+      User.hasMany(models.Experience, { foreignKey: "userName" });
+      User.hasMany(models.Skill, { foreignKey: "userName" });
     }
   }
   User.init(
@@ -21,6 +21,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           notEmpty: { msg: "name is required" },
+        },
+      },
+      userName: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { msg: "name is required" },
+        },
+        unique: {
+          args: true,
+          msg: "userName already in use!",
         },
       },
       profilePic: {
