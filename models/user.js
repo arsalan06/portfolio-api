@@ -39,6 +39,12 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Profile pic is required" },
         },
       },
+      tageLines: {
+        type: DataTypes.JSON,
+        validate: {
+          notEmpty: { msg: "Language is required" },
+        },
+      },
       email: {
         type: DataTypes.STRING,
         unique: {

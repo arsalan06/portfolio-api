@@ -18,6 +18,12 @@ module.exports = {
       profilePic: {
         type: Sequelize.STRING,
       },
+      tageLines: {
+        type: Sequelize.JSON,
+        validate: {
+          notEmpty: { msg: "Language is required" },
+        },
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
