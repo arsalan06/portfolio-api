@@ -109,9 +109,6 @@ exports.login = async (req, res, next) => {
 
 exports.resetPassword = async (req, res) => {
   try {
-    console.log("user");
-    console.log("user");
-    console.log(req.auth);
     const user = await User.scope("withCreditionals").findOne({
       where: { id: req.auth.id },
     });
@@ -135,6 +132,35 @@ exports.resetPassword = async (req, res) => {
         status: "success",
         data: {
           message: "Password updated successfuly",
+        },
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(401).json({
+      status: "Fail",
+      message: err,
+    });
+  }
+};
+
+exports.userDetail = async (req, res, next) => {
+  try {
+    const { userName } = req.query;
+    if (!userName) {
+      return next(new appError("please provide userName", 401));
+    } else if (userName) {
+      const user = await User.findOne({
+        where: { userName: userName },
+      });
+      if (!user) {
+        return next(new appError("This user does not exist", 401));
+      }
+      user.password = undefined;
+      res.status(201).json({
+        status: "success",
+        data: {
+          user,
         },
       });
     }
