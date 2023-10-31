@@ -10,8 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userName: {
-        type: Sequelize.INTEGER,
-        allowNull:false,
+        type: Sequelize.STRING,
+        references: { model: "Users", key: "userName" },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       companyName: {
         type: Sequelize.STRING,

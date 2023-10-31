@@ -10,10 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userName: {
-        type: Sequelize.INTEGER,
-        validate: {
-          notEmpty: { msg: "user id is required" },
-        },
+        type: Sequelize.STRING,
+        references: { model: "Users", key: "userName" },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       projectName: {
         type: Sequelize.STRING,

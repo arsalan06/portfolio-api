@@ -10,11 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userName: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.STRING,
+        references: { model: "Users", key: "userName" },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       title: {
         type: Sequelize.STRING,
+      },
+      isCoreSkill: {
+        type: Sequelize.BOOLEAN,
+        validate: {
+          notEmpty: { msg: "core flage is required" },
+        },
+      },
+      ratePercent: {
+        type: Sequelize.INTEGER,
+        validate: {
+          notEmpty: { msg: "skill title is required" },
+        },
       },
       description: {
         type: Sequelize.STRING,
@@ -28,6 +42,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+    // await queryInterface.addIndex('Skills', ['userName'], {
+    //   name: "userName",
+    //   unique:false,
+    // })
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Skills");

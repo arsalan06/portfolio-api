@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userName: {
         type: DataTypes.STRING,
+        primaryKey: true,
         validate: {
           notEmpty: { msg: "name is required" },
         },
@@ -101,6 +102,18 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Language is required" },
         },
       },
+      age: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: { msg: "Age is required" },
+        },
+      },
+      socialLinks: {
+        type: DataTypes.JSON,
+        validate: {
+          notEmpty: { msg: "Age is required" },
+        },
+      },
       totalExperience: {
         type: DataTypes.STRING,
         validate: {
@@ -129,6 +142,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "User",
+      indexes: [
+        {
+          unique: true,
+          fields: ["userName"],
+        },
+      ],
     }
   );
   User.beforeCreate((user) => {

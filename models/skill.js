@@ -20,6 +20,18 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "skill title is required" },
         },
       },
+      isCoreSkill: {
+        type: DataTypes.BOOLEAN,
+        validate: {
+          notEmpty: { msg: "core flage is required" },
+        },
+      },
+      ratePercent: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: { msg: "skill title is required" },
+        },
+      },
       description: {
         type: DataTypes.STRING,
         validate: {

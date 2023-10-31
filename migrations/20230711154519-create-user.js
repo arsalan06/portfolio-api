@@ -14,6 +14,8 @@ module.exports = {
       },
       userName: {
         type: Sequelize.STRING,
+        // primaryKey: true,
+        // allowNull: false,
       },
       profilePic: {
         type: Sequelize.STRING,
@@ -68,6 +70,18 @@ module.exports = {
           notEmpty: { msg: "Language is required" },
         },
       },
+      age: {
+        type: Sequelize.INTEGER,
+        validate: {
+          notEmpty: { msg: "Age is required" },
+        },
+      },
+      socialLinks: {
+        type: Sequelize.JSON,
+        validate: {
+          notEmpty: { msg: "Age is required" },
+        },
+      },
       totalExperience: {
         type: Sequelize.STRING,
       },
@@ -88,6 +102,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+    });
+
+    await queryInterface.addIndex("Users", ["userName"], {
+      name: "userName",
+      unique: true,
     });
   },
   async down(queryInterface, Sequelize) {

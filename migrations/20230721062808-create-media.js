@@ -11,9 +11,9 @@ module.exports = {
       },
       projectId:{
         type: Sequelize.INTEGER,
-        validate: {
-          notEmpty: { msg: "Project id is required" }
-        }
+        references: { model: "Projects", key: "id" },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       projectImages: {
         type: Sequelize.JSON,
