@@ -9,7 +9,7 @@ var storage = multer.diskStorage({
   },
 });
 var upload = multer({ storage: storage });
-const uploadImages = upload.array("image", 12);
+const uploadImages = upload.array("image", 15);
 
 var upload = multer({ storage: storage });
 const uploadImage = upload.single("image");

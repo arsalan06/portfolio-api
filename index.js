@@ -1,10 +1,12 @@
 const express= require("express")
 require("dotenv").config();
 var bodyParser = require("body-parser");
+var path = require('path')
 var cors = require('cors')
 const app = express();
 app.use(bodyParser.json());
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'uploads')))
 const authRoute = require("./routes/authRoutes");
 const projectRoute = require("./routes/projectRoutes");
 const experienceRoute =require("./routes/experienceRoutes");
