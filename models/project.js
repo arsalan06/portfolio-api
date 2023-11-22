@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Project.belongsTo(models.User, { foreignKey: "userName" });
       Project.hasOne(models.Media, { foreignKey: "projectId", as: "Media" });
+      Project.hasOne(models.Video, { foreignKey: "projectId" });
     }
   }
   Project.init(

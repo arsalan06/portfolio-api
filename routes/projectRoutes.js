@@ -1,10 +1,12 @@
-const projectControler=require("../controlers/projectControler");
+const projectControler = require("../controlers/projectControler");
 const { protect } = require("../midlewares/protection");
-const {uploadImages} = require("../midlewares/uploadImage")
-const {addProject, addMedia,getProject}=projectControler
+const { uploadImages } = require("../midlewares/uploadImage");
+const { addProject, addMedia, addVideo, getProject } = projectControler;
 const express = require("express");
+const { uploadVideo } = require("../midlewares/uploadVideo");
 const projectRoutes = express.Router();
 projectRoutes.route("/addProject").post(addProject);
 projectRoutes.route("/getProject").get(getProject);
 projectRoutes.route("/addMedia").post(uploadImages, addMedia);
-module.exports = projectRoutes
+projectRoutes.route("/addVideo").post(uploadVideo, addVideo);
+module.exports = projectRoutes;

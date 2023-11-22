@@ -1,4 +1,4 @@
-const { Project, Media } = require("../models");
+const { Project, Media, Video } = require("../models");
 const appError = require("../utils/appError");
 
 exports.addProject = async (req, res, next) => {
@@ -46,16 +46,43 @@ exports.addMedia = async (req, res, next) => {
     });
   }
 };
-
+exports.addVideo = async (req, res, next) => {
+  try {
+    const { file } = req;
+    const { projectId } = req.query;
+    const newProjectVideo = await Video.create({
+      projectVideo:file.filename,
+      projectId,
+    });
+    res.status(201).json({
+      status: "success",
+      data: {
+        projectVideo: newProjectVideo,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(401).json({
+      status: "Fail",
+      message: err,
+    });
+  }
+};
 exports.getProject = async (req, res, next) => {
   try {
     const { userName } = req.query;
     const userProjects = await Project.findAll({
       where: { userName },
-      include: {
-        model: Media,
-        as: "Media",
-      },
+      include: [
+        {
+          model: Media,
+          as: "Media",
+        },
+        {
+          model: Video,
+          as: "Video",
+        },
+      ],
     });
     res.status(201).json({
       status: "success",

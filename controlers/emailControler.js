@@ -14,12 +14,13 @@ exports.sendEmailRequest = async (req, res) => {
      
     //   with proper template
     const msg = {
-      to: to, // Change to your recipient
+      to: process.env.RECEIVER_EMAIL, // Change to your recipient
       from: process.env.SENDER_EMAIL, // Change to your verified sender
       templateId: process.env.TEMPLATE_ID,
       dynamicTemplateData: {
         name: name,
         text: desc,
+        to:to
       },
     };
     await sgMail
