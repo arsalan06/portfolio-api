@@ -12,10 +12,12 @@ const authRoute = require("./routes/authRoutes");
 const projectRoute = require("./routes/projectRoutes");
 const experienceRoute =require("./routes/experienceRoutes");
 const skillRoutes = require("./routes/skillRoutes");
+const clientRoutes = require("./routes/clientRoutes");
 app.use("/api/v1", authRoute);
 app.use("/api/v1", projectRoute);
 app.use("/api/v1", experienceRoute);
 app.use("/api/v1", skillRoutes);
+app.use("/api/v1", clientRoutes);
 
 app.use((err, req, res, next)=>{
   err.statusCode=err.statusCode || 500
